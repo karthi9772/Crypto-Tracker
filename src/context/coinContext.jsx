@@ -7,14 +7,13 @@ export const coinContext = createContext();
 const CoinContextProvider = (props) => {
   const [allCoin, setAllCoin] = useState([]); // State for coins
   const [currency, setCurrency] = useState({
-    name: "usd", // Default currency name
-    symbol: "$", // Default currency symbol
+    name: "inr", // Default currency name
+    symbol: "₹", // Default currency symbol
   });
 
   // Function to fetch coins data from API
   const fetchAllCoin = async () => {
-    const url =
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd";
+    const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}`;
     const options = {
       method: "GET",
       headers: {
@@ -25,7 +24,7 @@ const CoinContextProvider = (props) => {
 
     fetch(url, options)
       .then((res) => res.json())
-      .then((json) => console.log(json))
+      .then((json) => setAllCoin(json))
       .catch((err) => console.error(err));
   };
 

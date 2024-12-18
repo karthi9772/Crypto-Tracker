@@ -6,7 +6,7 @@ import Coin from "./pages/Coin";
 
 const App = () => {
   return (
-    <div className=" h-screen bg-gradient-to-r from-cyan-500 to-blue-500 max-w-screen overflow-hidden">
+    <div className=" h-screen bg-gradient-to-r from-cyan-500 to-blue-500 max-w-screen overflow-x-hidden pb-20">
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />

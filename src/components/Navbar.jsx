@@ -53,8 +53,8 @@ const Navbar = () => {
           onChange={handleChange} // Handle currency change
           className="rounded-md mr-2"
         >
-          <option value="inr">INR</option>
           <option value="usd">USD</option>
+          <option value="inr">INR</option>
           <option value="eur">EUR</option>
         </select>
 

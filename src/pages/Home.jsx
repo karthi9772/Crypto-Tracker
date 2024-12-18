@@ -33,6 +33,7 @@ const Home = () => {
         <h1 className="mt-2 font-normal ">
           up-to-date, live data of all CryptoCoins.
         </h1>
+        {/* Serach box */}
         <form className="mt-8" onSubmit={HandleSubmit}>
           <input
             type="text"
@@ -40,11 +41,18 @@ const Home = () => {
             value={input}
             onChange={HandleChange}
             className="h-[2rem] p-2 rounded-md w-[16rem] text-black"
+            list="coinlist"
           />
           <input
             type="submit"
             className="bg-orange-400 cursor-pointer text-white rounded-md h-[1.5rem] px-2 ml-[-4.4rem] "
           />
+
+          <datalist id="coinlist">
+            {allCoin.map((item, index) => (
+              <option key={index} value={item.name}></option>
+            ))}
+          </datalist>
         </form>
       </div>
 

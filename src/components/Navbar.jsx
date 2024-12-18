@@ -1,18 +1,15 @@
 import React, { useContext } from "react";
-import { coinContext } from "../context/coinContext"; // Import the coin context
+import { coinContext } from "../context/coinContext";
 
-import logo from "../assets/logo.png"; // Import logo
-import arrow from "../assets/arrow_icon.png"; // Import arrow icon
+import logo from "../assets/logo.png";
+import arrow from "../assets/arrow_icon.png";
 
 const Navbar = () => {
-  // Destructuring the context values
   const { setCurrency, currency } = useContext(coinContext);
 
-  // Handle currency selection from dropdown
   const handleChange = (event) => {
     const selectedCurrency = event.target.value;
 
-    // Update currency based on the selected option
     switch (selectedCurrency) {
       case "usd":
         setCurrency({ name: "usd", symbol: "$" });
@@ -23,9 +20,9 @@ const Navbar = () => {
       case "eur":
         setCurrency({ name: "eur", symbol: "€" });
         break;
-      default:
-        setCurrency({ name: "usd", symbol: "$" });
-        break;
+      // default:
+      //   setCurrency({ name: "usd", symbol: "$" });
+      //   break;
     }
   };
 
@@ -49,12 +46,12 @@ const Navbar = () => {
       {/* Currency Selector */}
       <div className="px-2 w-[20%] flex justify-around">
         <select
-          value={currency.name} // Bind the select value to the current currency
-          onChange={handleChange} // Handle currency change
+          value={currency.name}
+          onChange={handleChange}
           className="rounded-md mr-2"
         >
-          <option value="usd">USD</option>
           <option value="inr">INR</option>
+          <option value="usd">USD</option>
           <option value="eur">EUR</option>
         </select>
 

@@ -4,10 +4,23 @@ import { coinContext } from "../context/coinContext";
 const Home = () => {
   const { allCoin, currency } = useContext(coinContext);
   const [displayCoin, setDisplayCoin] = useState([]);
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     setDisplayCoin(allCoin);
   }, [allCoin]);
+
+  const HandleChange = (e) => {
+    setInput(e.target.value);
+  };
+
+  const HandleSubmit = async (e) => {
+    e.preventDefault();
+    const coins = await allCoin.filter((item) => {
+      return item.name.toLowerCase().includes(input.toLowerCase());
+    });
+    setDisplayCoin(coins);
+  };
 
   return (
     <div>
@@ -20,10 +33,12 @@ const Home = () => {
         <h1 className="mt-2 font-normal ">
           up-to-date, live data of all CryptoCoins.
         </h1>
-        <form className="mt-8">
+        <form className="mt-8" onSubmit={HandleSubmit}>
           <input
             type="text"
             placeholder="Search crypto..."
+            value={input}
+            onChange={HandleChange}
             className="h-[2rem] p-2 rounded-md w-[16rem] text-black"
           />
           <input

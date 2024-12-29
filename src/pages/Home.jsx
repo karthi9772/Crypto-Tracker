@@ -44,7 +44,7 @@ const Home = () => {
             list="coinlist"
           />
           <input
-            type="submit"
+            type="Search"
             className="bg-orange-400 cursor-pointer text-white rounded-md h-[1.5rem] px-2 ml-[-4.4rem] "
           />
 

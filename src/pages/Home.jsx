@@ -43,16 +43,17 @@ const Home = () => {
             className="h-[2rem] p-2 rounded-md w-[16rem] text-black"
             list="coinlist"
           />
-          <input
-            type="submit"
-            className="bg-orange-400 cursor-pointer text-white rounded-md h-[1.5rem] px-2 ml-[-4.4rem] "
-          />
-
           <datalist id="coinlist">
             {allCoin.map((item, index) => (
               <option key={index} value={item.name}></option>
             ))}
           </datalist>
+          <button
+            type="submit"
+            className="bg-orange-400 cursor-pointer text-white rounded-md h-[1.5rem] px-2 ml-[-4.4rem] "
+          >
+            Search
+          </button>
         </form>
       </div>
 

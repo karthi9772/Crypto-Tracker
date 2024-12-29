@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { coinContext } from "../context/coinContext";
+import { Link } from "react-router-dom";
 
 import logo from "../assets/logo.png";
 import arrow from "../assets/arrow_icon.png";
@@ -30,13 +31,17 @@ const Navbar = () => {
     <div className="w-full h-fit p-3 flex flex-row justify-between gap-4 border-b-2">
       {/* Logo Section */}
       <div className="w-[20%]">
-        <img src={logo} className="h-fit w-fit" alt="Logo" />
+        <Link to="/">
+          <img src={logo} className="h-fit w-fit" alt="Logo" />
+        </Link>
       </div>
 
       {/* Navigation Links */}
       <div className="w-[60%] mt-2">
         <ul className="flex flex-row gap-2 justify-evenly">
-          <li>Home</li>
+          <Link to="/">
+            <li>Home</li>
+          </Link>
           <li>Features</li>
           <li>Pricing</li>
           <li>Blog</li>

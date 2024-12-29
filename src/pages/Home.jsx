@@ -1,5 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { coinContext } from "../context/coinContext";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const { allCoin, currency } = useContext(coinContext);
@@ -9,6 +11,8 @@ const Home = () => {
   useEffect(() => {
     setDisplayCoin(allCoin);
   }, [allCoin]);
+
+  const navigate = useNavigate();
 
   const HandleChange = (e) => {
     setInput(e.target.value);
@@ -74,23 +78,43 @@ const Home = () => {
 
             {/* Data */}
             <tbody>
-              {displayCoin?.map((item, index) => (
-                <tr key={index} className="border-t hover:bg-[#003459]">
+              {displayCoin?.slice(0, 15).map((item, index) => (
+                <tr
+                  key={index}
+                  className="border-t hover:bg-[#003459] cursor-pointer"
+                  onClick={() => navigate(`/coin/${item.id}`)}
+                >
                   {/* Rank */}
                   <td className="px-4 py-2 text-left text-sm md:text-base">
-                    {item.market_cap_rank}
+                    <Link
+                      to={`coin/${item.id}`}
+                      className="block w-full h-full"
+                    >
+                      {item.market_cap_rank}
+                    </Link>
                   </td>
 
                   {/* Coin */}
                   <td className="px-4 py-2 flex items-center text-sm md:text-base">
-                    <img src={item?.image} alt="Img" className="w-6 h-6 mr-2" />
-                    <span>{item.name}</span>
+                    <Link to={`coin/${item.id}`} className="flex items-center">
+                      <img
+                        src={item?.image}
+                        alt="Img"
+                        className="w-6 h-6 mr-2"
+                      />
+                      <span>{item.name}</span>
+                    </Link>
                   </td>
 
                   {/* Price */}
                   <td className="px-4 py-2 text-sm md:text-base">
-                    {currency.symbol}
-                    {item.current_price}
+                    <Link
+                      to={`coin/${item.id}`}
+                      className="block w-full h-full"
+                    >
+                      {currency.symbol}
+                      {item.current_price}
+                    </Link>
                   </td>
 
                   {/* 24Hr Change */}
@@ -101,13 +125,23 @@ const Home = () => {
                         : "text-red-500"
                     } `}
                   >
-                    {item.price_change_percentage_24h}
+                    <Link
+                      to={`coin/${item.id}`}
+                      className="block w-full h-full"
+                    >
+                      {item.price_change_percentage_24h}
+                    </Link>
                   </td>
 
                   {/* Market Cap */}
                   <td className="px-4 py-2 text-right text-sm md:text-base">
-                    {currency.symbol}
-                    {item.market_cap.toLocaleString()}
+                    <Link
+                      to={`coin/${item.id}`}
+                      className="block w-full h-full"
+                    >
+                      {currency.symbol}
+                      {item.market_cap.toLocaleString()}
+                    </Link>
                   </td>
                 </tr>
               ))}
